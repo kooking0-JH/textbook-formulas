@@ -201,14 +201,35 @@ table.grades svg .area{fill:rgba(194,24,91,.12);stroke:none}
 table.grades svg .t{font:italic 12px "Times New Roman",serif;fill:var(--j)}
 @media (max-width:620px){table.grades td.fig{width:auto;padding:4px 0}table.grades td.fig::before{content:none}}
 @media (max-width:560px){.map{min-width:0}.map th,.map td{padding:7px 7px;font-size:13.5px}.map thead th{font-size:11px}.map tbody th{font-size:12.5px}.book,.radio{padding:14px 10px 16px}}
-/* 듣기 */
-.tts-start{display:grid;gap:6px;justify-items:center}
-.tts-start button{font-size:16px;padding:10px 20px}
-.tts-note{font-size:13.5px;color:var(--muted)}
-.tts-on{background:rgba(255,205,40,.22);box-shadow:0 0 0 6px rgba(255,205,40,.22);border-radius:3px;transition:background .2s}
-.tts-bar{position:fixed;left:50%;bottom:max(14px, env(safe-area-inset-bottom, 0px));transform:translateX(-50%);z-index:50;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px rgba(20,27,38,.18)}
-.tts-bar.in-frame{position:absolute;bottom:auto}
-@media (prefers-reduced-motion:reduce){.tts-on{transition:none}}
+/* 듣기 (1편과 같은 모양) */
+.listen{display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center}
+.narr-all{font-size:16px;padding:10px 20px}
+.narr-note{color:var(--muted);font-size:13px;text-align:center}
+.narr-sec{justify-self:start;font-size:13px;padding:6px 12px}
+.narr-on{outline:2px solid var(--j);outline-offset:6px;border-radius:6px;background:rgba(94,53,177,.06)}
+.narr-bar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:center;padding:10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));background:var(--screen);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(20,27,38,.12)}
+.narr-bar .nb-info{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--soft)}
+.nb-pos{color:var(--muted);font-variant-numeric:tabular-nums}
+.nb-ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.nb-ctrl button{min-width:40px;justify-content:center;padding:7px 10px}
+.nb-rate{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:13px}
+.nb-rate select{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:3px 6px;font:inherit}
+.nb-msg{flex-basis:100%;text-align:center;font-size:13px;color:var(--l)}
+body.narr-open{padding-bottom:120px}
+.narr-unsup{max-width:34em;display:grid;gap:10px;margin-top:4px;padding:12px 14px;font-size:14px;line-height:1.6;color:var(--soft);background:var(--screen);border:1px solid var(--line);border-radius:6px;text-align:center}
+.unsup-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.btnlink{display:inline-flex;align-items:center;padding:8px 14px;border-radius:6px;background:var(--btn);color:var(--bg);font-weight:600;font-size:14px;text-decoration:none;box-shadow:0 2px 0 var(--btn-shadow)}
+.btnlink:hover{background:var(--btn-hover)}
+@media (max-width:560px){
+  .narr-bar{gap:4px 8px;padding-top:6px;padding-bottom:calc(6px + env(safe-area-inset-bottom, 0px))}
+  .narr-bar .nb-info{flex-basis:100%;justify-content:center;font-size:12px;line-height:1.2}
+  .nb-ctrl{gap:6px;flex-wrap:nowrap}
+  .nb-ctrl button{min-width:36px;padding:6px 8px}
+  .nb-rate{font-size:0;gap:0}
+  .nb-rate select{font-size:13px;padding:2px 4px}
+  body.narr-open{padding-bottom:84px}
+}
+.narr-bar.emb{position:absolute;bottom:auto;top:0}
 </style>
 <script>
 window.MathJax = {
@@ -236,7 +257,6 @@ window.MathJax = {
   <header class="hero">
     <div class="eyebrow">교과서 속 공식 · 중등편</div>
     <h1>중학교 수학으로 이해하는 무선 공식</h1>
-    <div class="tts-start"><button type="button" id="ttsStart"><span class="ic" aria-hidden="true">▶</span>처음부터 듣기</button><p class="tts-note" id="ttsNote">기기 음성으로 읽고, 읽는 곳으로 화면이 따라갑니다.</p></div>
     <p class="lede">기울기, 삼각비, 피타고라스 정리, 정비례와 반비례, 이차함수. 중학교 교과서의 공식만으로 안테나의 위상각과 임피던스, 공진 주파수까지 이해할 수 있습니다.</p>
     <ul class="qs"><li>직선의 기울기는 왜 각도의 다른 이름일까?</li><li>반비례 그래프는 공진과 무슨 관계일까?</li><li>꼭짓점은 왜 x = −b/2a에 있을까?</li></ul>
     <p class="lede">항목마다 먼저 <strong>학교 그래프와 무선 그래프를 겹쳐 놓은 그림</strong>이 나옵니다(▶ 버튼을 누르면 겹쳐지는 과정을 볼 수 있습니다). 그다음 <strong>교과서에서</strong>(개념 · 공식 · 예제)를 읽고 <strong>무선으로 이어 보기</strong>로 넘어가면 됩니다. 여러 항목에 같은 안테나(30 + j40 Ω)가 다시 나오니, 하나의 안테나를 따라가며 읽어도 좋습니다.</p>
@@ -1668,45 +1688,93 @@ window.MathJax = {
 })();
 </script>
 <script>
-/* ---------- 듣기(기기 음성) · 블로그 삽입 높이 맞춤 ---------- */
+/* ---------- 블로그(iframe) 삽입: 높이·보이는 범위 주고받기 (antenna-types 규약) ---------- */
 (function(){
-  const inFrame = window.self !== window.top;
-  const post = msg => { try { window.parent.postMessage(msg, '*'); } catch(e){} };
-  const docTop = el => el.getBoundingClientRect().top + window.scrollY;
-  function goTo(el, where){
-    if (inFrame) post({type:'tf-scroll', top: Math.max(0, docTop(el)), center: where!=='top'});
-    else el.scrollIntoView({block: where==='top'?'start':'center', behavior:'smooth'});
+  if (window.self === window.top) return;
+  var last = 0, on = false;
+  function send(force){
+    if (!on) return;
+    var h = Math.ceil(document.documentElement.scrollHeight);
+    if (!force && Math.abs(h - last) < 2) return;
+    last = h;
+    try { window.parent.postMessage({type: 'antenna-types:height', height: h}, '*'); } catch(e){}
   }
-
-  /* 블로그(iframe)에 넣었을 때: 높이 알리기, 목차 링크 이동 */
-  if (inFrame){
-    let last = 0;
-    const send = () => { const h = Math.ceil(document.documentElement.scrollHeight); if (Math.abs(h-last) > 2){ last = h; post({type:'tf-height', h}); } };
-    window.addEventListener('load', send); window.addEventListener('resize', send);
-    if (window.ResizeObserver) new ResizeObserver(send).observe(document.body);
-    setInterval(send, 1500);
-    document.addEventListener('click', e => {
-      const a = e.target.closest('a[href^="#"]'); if (!a) return;
-      const t = document.getElementById(a.getAttribute('href').slice(1)); if (!t) return;
-      e.preventDefault(); goTo(t, 'top');
-    });
-    window.addEventListener('load', () => {
-      const t = location.hash && document.getElementById(location.hash.slice(1));
-      if (t) setTimeout(() => goTo(t, 'top'), 300);
-      else if (document.referrer && new URL(document.referrer, location.href).host === location.host) post({type:'tf-scroll', top:0});
-    });
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if (!d || typeof d !== 'object') return;
+    if (d.type === 'antenna-types:ping'){
+      var first = !on;
+      if (!on){ on = true; window.__embedOn = true; document.documentElement.classList.add('embedded'); }
+      send(true);
+      if (first) setTimeout(jumpHash, 200);
+    } else if (d.type === 'antenna-types:viewport'){
+      window.__embedView = {top: +d.top || 0, height: +d.height || 0};
+      document.dispatchEvent(new Event('embedview'));
+    }
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(function(){ send(false); }).observe(document.body);
+  window.addEventListener('load', function(){ send(true); });
+  /* 목차 링크(#i5 등): 블로그 화면을 그 자리로 옮깁니다 */
+  function scrollToEl(el){
+    var v = window.__embedView, H = v && v.height ? v.height : 800;
+    var y = el.getBoundingClientRect().top + window.scrollY - 70 + H / 2;
+    try { window.parent.postMessage({type: 'antenna-types:scrollto', y: y, smooth: true}, '*'); } catch(e){}
   }
+  function jumpHash(){
+    var t = location.hash && document.getElementById(location.hash.slice(1));
+    if (t) scrollToEl(t);
+    else if (document.referrer && document.referrer.indexOf(location.host) >= 0) scrollToEl(document.body);
+  }
+  document.addEventListener('click', function(e){
+    if (!window.__embedOn) return;
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1)); if (!t) return;
+    e.preventDefault(); scrollToEl(t);
+  });
+})();
+</script>
+<script>
+/* ---------- 듣기: 기기 음성(Web Speech API) ---------- */
+(function(){
+  const S = window.speechSynthesis;
+  const hero = document.querySelector('.hero');
+  const mk = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  const placeHero = box => { const h1 = hero && hero.querySelector('h1'); if (h1) h1.insertAdjacentElement('afterend', box); else if (hero) hero.appendChild(box); };
 
-  /* 읽을 문장 모으기: MathJax가 수식을 그리기 전에 원래 글자를 저장합니다 */
-  const btn = document.getElementById('ttsStart'), note = document.getElementById('ttsNote');
-  if (!btn) return;
-  const SS = window.speechSynthesis;
-  if (!SS || !window.SpeechSynthesisUtterance){ btn.hidden = true; if (note) note.textContent = '이 브라우저는 소리 내어 읽기를 지원하지 않습니다.'; return; }
+  if (!S || !window.SpeechSynthesisUtterance){
+    /* 앱 안 브라우저(카카오톡·안드로이드 WebView 등)에는 음성 기능이 없습니다: 버튼은 두고, 이유와 브라우저로 여는 방법을 보여 줍니다 */
+    if (!hero) return;
+    const url = location.href.split('#')[0];
+    const android = /Android/i.test(navigator.userAgent);
+    const openHref = android ? 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end' : url;
+    const box = mk('div', 'listen');
+    const btn = mk('button', 'narr-all', '<span class="ic" aria-hidden="true">▶</span>처음부터 듣기'); btn.type = 'button';
+    const note = mk('span', 'narr-note', '기기 음성으로 읽고, 읽는 곳으로 화면이 따라갑니다.');
+    const msg = mk('div', 'narr-unsup', '<p>이 앱 화면에서는 듣기 기능을 쓸 수 없습니다. 크롬이나 사파리 같은 브라우저에서 열면 들을 수 있습니다.</p>' +
+      '<div class="unsup-actions"><a class="btnlink" target="_blank" rel="noopener">브라우저에서 열기</a><button type="button" class="alt">주소 복사</button></div>');
+    msg.hidden = true;
+    msg.querySelector('a').href = openHref;
+    const cp = msg.querySelector('button');
+    cp.addEventListener('click', () => {
+      const done = () => { cp.textContent = '복사했습니다'; };
+      const legacy = () => {
+        const t = document.createElement('textarea'); t.value = url; t.setAttribute('readonly', '');
+        t.style.position = 'absolute'; t.style.left = '-9999px'; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); done(); } catch(e){ cp.textContent = url; }
+        document.body.removeChild(t);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, legacy); else legacy();
+    });
+    btn.addEventListener('click', () => { msg.hidden = !msg.hidden; });
+    box.appendChild(btn); box.appendChild(note); box.appendChild(msg); placeHero(box);
+    return;
+  }
+  const emb = () => !!window.__embedOn;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const SEL = 'main h1, .hero .lede, .qs li, main h2, main h3, main h4, .ask, .prose > p, .readas, .ex > p, .ex > .t, .terms > div, .key > .t, .next > p, .cmpkind, .units';
-  const SKIP = '.stage, nav, footer, details, table, .tts-skip';
-  const blocks = [...document.querySelectorAll(SEL)].filter(el => !el.closest(SKIP) && el.textContent.trim());
-
+  /* ---------- 읽을 문단 모으기 (MathJax가 수식을 그리기 전의 글자) ---------- */
+  const SEL = 'main h1, .hero .lede, .qs li, main h2, main h3, main h4, .ask, .prose > p, .readas, .ex > .t, .ex > p, .terms > div, .key > .t, .next > p, .cmpkind';
+  const SKIP = '.stage, nav, footer, details, table, .listen';
   const TEXW = {theta:'세타',varphi:'파이',phi:'파이',pi:'파이',omega:'오메가',Omega:'옴',Gamma:'감마',gamma:'감마',lambda:'람다',mu:'마이크로',
     times:' 곱하기 ',cdot:' 곱하기 ',div:' 나누기 ',approx:' 약 ',le:' 이하 ',leq:' 이하 ',ge:' 이상 ',geq:' 이상 ',ne:' 같지 않은 ',neq:' 같지 않은 ',
     infty:'무한대',pm:' 플러스마이너스 ',to:' 에서 ',rightarrow:' 이면 ',Rightarrow:' 이면 ',Longrightarrow:' 이면 ',lim:'극한 ',int:'적분 ',sum:'시그마 ',sin:'사인 ',cos:'코사인 ',tan:'탄젠트 ',
@@ -1737,56 +1805,149 @@ window.MathJax = {
     return s.replace(/\s+/g, ' ').trim();
   }
   const plain = el => { const c = el.cloneNode(true); c.querySelectorAll('*').forEach(x => x.after(document.createTextNode(' '))); return c.textContent; };
-  const texts = blocks.map(el => speakable(plain(el)));
-  const sentences = texts.map(t => t.split(/(?<=[.?!])\s+/).filter(x => x.trim()));
+  const items = [...document.querySelectorAll(SEL)].filter(el => !el.closest(SKIP) && el.textContent.trim()).map(el => {
+    const holder = el.closest('.item') || el.closest('.scene') || el.closest('.hero');
+    return {el, sec: holder ? (holder.id || 'hero') : 'hero', text: speakable(plain(el))};
+  }).filter(it => it.text);
+  if (!items.length) return;
+  function splitSentences(t){ return t.replace(/([.?!])\s+/g, '$1\u0001').split('\u0001').map(x => x.trim()).filter(Boolean); }
+  items.forEach(it => it.parts = splitSentences(it.text));
+  function secLabel(sec){
+    if (sec === 'hero') return '머리말';
+    const el = document.getElementById(sec);
+    if (!el) return sec;
+    const no = el.querySelector(':scope > h3 .no');
+    if (no) return no.textContent.trim();
+    const tag = el.querySelector('.tag');
+    return tag ? tag.textContent.trim() : sec;
+  }
 
-  /* 재생 막대: 단독 페이지에서는 화면 아래, 블로그 안에서는 읽는 문단 바로 위 */
-  const bar = document.createElement('div');
-  bar.className = 'tts-bar' + (inFrame ? ' in-frame' : ''); bar.hidden = true;
-  bar.innerHTML = '<span class="state">듣기: <b id="ttsState">읽는 중</b></span><button type="button" id="ttsPause"><span class="ic" aria-hidden="true">❚❚</span>멈추기</button><button type="button" class="alt" id="ttsStop"><span class="ic" aria-hidden="true">■</span>그만 듣기</button>';
-  document.body.appendChild(bar);
-  const pb = bar.querySelector('#ttsPause'), sb = bar.querySelector('#ttsStop'), st = bar.querySelector('#ttsState');
-
+  /* ---------- 목소리 고르기 ---------- */
   let voice = null;
-  const pickVoice = () => { const v = SS.getVoices(); voice = v.find(x => /^ko/i.test(x.lang) && /google|natural|online/i.test(x.name)) || v.find(x => /^ko/i.test(x.lang)) || null; };
-  pickVoice(); if ('onvoiceschanged' in SS) SS.onvoiceschanged = pickVoice;
+  function pickVoice(){
+    const vs = S.getVoices().filter(v => /^ko(-|_|$)/i.test(v.lang));
+    if (!vs.length){ voice = null; return; }
+    const score = v => (/natural|neural|online/i.test(v.name) ? 4 : 0) + (/google/i.test(v.name) ? 2 : 0) + (/yuna|sunhi|heami|injoon|hyunsu|jimin/i.test(v.name) ? 1 : 0);
+    voice = vs.slice().sort((a, b) => score(b) - score(a))[0];
+  }
+  pickVoice();
+  if (typeof S.addEventListener === 'function') S.addEventListener('voiceschanged', pickVoice); else S.onvoiceschanged = pickVoice;
+  try { S.cancel(); } catch(e){}
 
-  let bi = 0, si = 0, playing = false, run = 0, cur = null;
-  function mark(i){
-    if (cur) cur.classList.remove('tts-on');
-    cur = blocks[i]; if (!cur) return; cur.classList.add('tts-on');
-    goTo(cur, 'center');
-    if (inFrame){ bar.style.top = Math.max(0, docTop(cur) - 52) + 'px'; }
-  }
-  function ui(){
-    bar.hidden = !(playing || cur);
-    pb.innerHTML = playing ? '<span class="ic" aria-hidden="true">❚❚</span>멈추기' : '<span class="ic" aria-hidden="true">▶</span>이어 듣기';
-    st.textContent = playing ? '읽는 중' : '멈춤';
-    btn.innerHTML = '<span class="ic" aria-hidden="true">▶</span>' + (playing || cur ? '처음부터 다시 듣기' : '처음부터 듣기');
-  }
-  function speakNext(){
-    const my = run;
-    while (bi < blocks.length && si >= sentences[bi].length){ bi++; si = 0; if (bi < blocks.length) mark(bi); }
-    if (bi >= blocks.length){ stop(); return; }
-    const u = new SpeechSynthesisUtterance(sentences[bi][si]);
-    u.lang = 'ko-KR'; if (voice) u.voice = voice; u.rate = 1;
-    u.onend = () => { if (my !== run || !playing) return; si++; speakNext(); };
-    u.onerror = e => { if (my !== run || !playing) return; if (e.error === 'interrupted' || e.error === 'canceled') return; si++; speakNext(); };
-    SS.speak(u);
-  }
-  function play(fromBlock){
-    run++; SS.cancel(); playing = true;
-    if (fromBlock != null){ bi = fromBlock; si = 0; }
-    mark(bi); ui(); setTimeout(speakNext, 60);
-  }
-  function pause(){ run++; playing = false; SS.cancel(); ui(); }
-  function stop(){ run++; playing = false; SS.cancel(); if (cur) cur.classList.remove('tts-on'); cur = null; bi = 0; si = 0; ui(); }
+  /* ---------- 화면 ---------- */
+  const heroBox = mk('div', 'listen');
+  const allBtn = mk('button', 'narr-all', '<span class="ic" aria-hidden="true">▶</span>처음부터 듣기'); allBtn.type = 'button';
+  heroBox.appendChild(allBtn); heroBox.appendChild(mk('span', 'narr-note', '기기 음성으로 읽고, 읽는 곳으로 화면이 따라갑니다.'));
+  placeHero(heroBox);
 
-  btn.addEventListener('click', () => play(0));
-  pb.addEventListener('click', () => playing ? pause() : play());
-  sb.addEventListener('click', stop);
-  window.addEventListener('pagehide', () => SS.cancel());
-  ui();
+  [...document.querySelectorAll('.item')].forEach(itemEl => {
+    const sec = itemEl.id, h3 = itemEl.querySelector(':scope > h3');
+    const idx = items.findIndex(x => x.sec === sec);
+    if (!h3 || idx < 0) return;
+    const b = mk('button', 'alt narr-sec', '<span class="ic" aria-hidden="true">▶</span>이 항목 듣기'); b.type = 'button';
+    b.addEventListener('click', () => start(items.findIndex(x => x.sec === sec), sec));
+    h3.insertAdjacentElement('afterend', b);
+  });
+
+  const bar = mk('div', 'narr-bar');
+  bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', '낭독 재생');
+  bar.hidden = true;
+  bar.innerHTML =
+    '<div class="nb-info"><span class="nb-sec"></span><span class="nb-pos"></span></div>' +
+    '<div class="nb-ctrl">' +
+      '<button type="button" class="alt nb-prev" aria-label="이전 문단">⏮</button>' +
+      '<button type="button" class="nb-play" aria-label="일시정지">❚❚</button>' +
+      '<button type="button" class="alt nb-next" aria-label="다음 문단">⏭</button>' +
+      '<label class="nb-rate">속도 <select class="nb-rsel"><option value="0.8">0.8×</option><option value="0.9">0.9×</option><option value="1" selected>1.0×</option><option value="1.1">1.1×</option><option value="1.2">1.2×</option></select></label>' +
+      '<button type="button" class="alt nb-close" aria-label="낭독 닫기">✕</button>' +
+    '</div>' +
+    '<div class="nb-msg" hidden></div>';
+  document.body.appendChild(bar);
+  function placeBar(){
+    if (!emb() || bar.hidden) return;
+    const v = window.__embedView; if (!v) return;
+    const bh = bar.offsetHeight || 64, dh = document.documentElement.scrollHeight;
+    bar.style.top = Math.max(0, Math.min(dh - bh, v.top + v.height - bh)) + 'px';
+  }
+  document.addEventListener('embedview', placeBar);
+  const $ = s => bar.querySelector(s);
+  const secEl = $('.nb-sec'), posEl = $('.nb-pos'), playBtn = $('.nb-play'), rateSel = $('.nb-rsel'), msgEl = $('.nb-msg');
+
+  /* ---------- 읽기 ---------- */
+  let i = 0, k = 0, gen = 0, playing = false, onlySec = null, active = null;
+  function setActive(el){
+    if (active) active.classList.remove('narr-on');
+    active = el;
+    if (!el) return;
+    el.classList.add('narr-on');
+    const r = el.getBoundingClientRect();
+    if (emb()){
+      const v = window.__embedView, H = v && v.height ? v.height : window.innerHeight;
+      const off = Math.max(56, H * 0.1);
+      const y = r.top + window.scrollY - off + H / 2;
+      try { window.parent.postMessage({type: 'antenna-types:scrollto', y: y, smooth: !reduce}, '*'); } catch(e){}
+    } else {
+      const off = Math.max(56, window.innerHeight * 0.1);
+      window.scrollTo({top: Math.max(0, r.top + window.scrollY - off), behavior: reduce ? 'auto' : 'smooth'});
+    }
+  }
+  function updateBar(){
+    const it = items[i];
+    secEl.textContent = secLabel(it.sec);
+    const same = items.filter(x => x.sec === it.sec);
+    posEl.textContent = (same.indexOf(it) + 1) + ' / ' + same.length;
+    playBtn.textContent = playing ? '❚❚' : '▶';
+    playBtn.setAttribute('aria-label', playing ? '일시정지' : '재생');
+  }
+  function showMsg(t){ msgEl.textContent = t; msgEl.hidden = !t; }
+  function speakPart(g){
+    if (g !== gen || !playing) return;
+    const it = items[i];
+    if (k >= it.parts.length){
+      const n = i + 1;
+      if (n < items.length && (!onlySec || items[n].sec === onlySec)){ i = n; k = 0; setActive(items[i].el); updateBar(); speakPart(g); }
+      else finish();
+      return;
+    }
+    const u = new SpeechSynthesisUtterance(it.parts[k]);
+    u.lang = 'ko-KR';
+    if (voice) u.voice = voice;
+    u.rate = +rateSel.value;
+    u.onend = () => { if (g !== gen) return; k++; speakPart(g); };
+    u.onerror = e => { if (g !== gen) return; if (e && (e.error === 'interrupted' || e.error === 'canceled')) return; k++; speakPart(g); };
+    S.speak(u);
+  }
+  function go(){ gen++; try { S.cancel(); } catch(e){} playing = true; updateBar(); speakPart(gen); }
+  function start(idx, sec){
+    if (idx < 0) return;
+    pickVoice();
+    bar.hidden = false; document.body.classList.add('narr-open');
+    bar.classList.toggle('emb', emb());
+    if (emb()){ try { window.parent.postMessage({type: 'antenna-types:needview'}, '*'); } catch(e){} placeBar(); }
+    if (!voice && S.getVoices().length){
+      showMsg('이 브라우저에는 한국어 음성이 없어 읽을 수 없습니다. 엣지, 크롬, 사파리에서 열어 보십시오.');
+      playing = false; i = idx; updateBar(); return;
+    }
+    showMsg('');
+    onlySec = sec || null; i = idx; k = 0;
+    setActive(items[i].el);
+    go();
+  }
+  function pause(){ playing = false; gen++; try { S.cancel(); } catch(e){} updateBar(); }
+  function finish(){ playing = false; gen++; updateBar(); setActive(null); }
+  function close(){ pause(); setActive(null); bar.hidden = true; document.body.classList.remove('narr-open'); showMsg(''); }
+  function jump(d){
+    const n = Math.max(0, Math.min(items.length - 1, i + d));
+    if (onlySec && items[n].sec !== onlySec) onlySec = items[n].sec;
+    i = n; k = 0; setActive(items[i].el); go();
+  }
+  allBtn.addEventListener('click', () => start(0, null));
+  playBtn.addEventListener('click', () => { if (playing) pause(); else { if (!active) setActive(items[i].el); go(); } });
+  $('.nb-prev').addEventListener('click', () => jump(k > 0 ? 0 : -1));
+  $('.nb-next').addEventListener('click', () => jump(1));
+  $('.nb-close').addEventListener('click', close);
+  rateSel.addEventListener('change', () => { if (playing) go(); });
+  window.addEventListener('pagehide', () => { try { S.cancel(); } catch(e){} });
 })();
 </script>
 </body>
