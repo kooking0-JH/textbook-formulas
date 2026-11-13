@@ -201,6 +201,14 @@ table.grades svg .area{fill:rgba(194,24,91,.12);stroke:none}
 table.grades svg .t{font:italic 12px "Times New Roman",serif;fill:var(--j)}
 @media (max-width:620px){table.grades td.fig{width:auto;padding:4px 0}table.grades td.fig::before{content:none}}
 @media (max-width:560px){.map{min-width:0}.map th,.map td{padding:7px 7px;font-size:13.5px}.map thead th{font-size:11px}.map tbody th{font-size:12.5px}.book,.radio{padding:14px 10px 16px}}
+/* 좁은 화면: 수식·표 넘침 방지 */
+.mfit{display:block;max-width:100%}
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+.tbl-s,table.map{display:block;max-width:100%;overflow-x:auto}
+@media (max-width:560px){
+  .tbl-s th,.tbl-s td{padding:5px 7px;white-space:normal;font-size:13px}
+  .map th,.map td{white-space:normal}
+}
 /* 듣기 (1편과 같은 모양) */
 .listen{display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center}
 .narr-all{font-size:16px;padding:10px 20px}
@@ -259,7 +267,7 @@ window.MathJax = {
     <h1>고등학교 수학으로 이해하는 무선 공식</h1>
     <p class="lede">복소수, 유리함수, 로그, 삼각함수, 미분과 적분, 벡터. 고등학교 교과서의 공식으로 리액턴스, SWR, 데시벨, 교류, 실효값, 유효전력을 이해합니다. 끝에는 대학 수학으로 한 걸음 더 나가 스미스 차트를 봅니다.</p>
     <ul class="qs"><li>i를 곱하면 왜 90° 돌아갈까?</li><li>로그는 왜 S미터의 눈금이 될까?</li><li>사인을 미분하면 왜 코사인이 될까?</li></ul>
-    <p class="lede">항목마다 먼저 <strong>학교 그래프와 무선 그래프를 겹쳐 놓은 그림</strong>이 나옵니다(▶ 버튼을 누르면 겹쳐지는 과정을 볼 수 있습니다). 그다음 <strong>교과서에서</strong>(개념 · 공식 · 예제)를 읽고 <strong>무선으로 이어 보기</strong>로 넘어가면 됩니다. 여러 항목에 같은 안테나(30 + j40 Ω)가 다시 나오니, 하나의 안테나를 따라가며 읽어도 좋습니다.</p>
+    <p class="lede">항목마다 먼저 <strong>교과서 그래프와 무선 그래프를 겹쳐 놓은 그림</strong>이 나옵니다(▶ 버튼을 누르면 겹쳐지는 과정을 볼 수 있습니다). 그다음 <strong>교과서에서</strong>(개념 · 공식 · 예제)를 읽고 <strong>무선으로 이어 보기</strong>로 넘어가면 됩니다. 여러 항목에 같은 안테나(30 + j40 Ω)가 다시 나오니, 하나의 안테나를 따라가며 읽어도 좋습니다.</p>
     <nav class="tiers" aria-label="편 목차"><ul><li><a href="index.html">중학교 수학 · 중등편</a></li><li><a href="high-school.html" aria-current="page">고등학교 수학 · 고등편</a></li><li><a href="high-school.html#uni">대학 수학 · 한 걸음 더</a></li></ul></nav>
   </header>
 
@@ -299,14 +307,14 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>공통수학2</b>직선의 방정식 · 두 직선의 평행과 수직</span><span class="unit"><b>공통수학1</b>복소수</span></div>
       <p class="ask">두 직선의 기울기를 곱해서 −1이 나오면 왜 수직일까?</p>
       <div class="cmp" id="cp3">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 → 무선 그래프 (같은 원리)</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 → 무선 그래프 (같은 원리)</span></div>
         <div class="stage">
-          <canvas aria-label="학교 그래프가 무선 그래프로 변하는 그림"></canvas>
+          <canvas aria-label="교과서 그래프가 무선 그래프로 변하는 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>변하는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
           </div>
-          <div class="status mstatus"><div class="msteps"><span class="mstep">① 학교 그래프</span><span class="mstep">② 변하기</span><span class="mstep">③ 기호 짝</span></div><p class="mcap"></p></div>
+          <div class="status mstatus"><div class="msteps"><span class="mstep">① 교과서 그래프</span><span class="mstep">② 변하기</span><span class="mstep">③ 기호 짝</span></div><p class="mcap"></p></div>
         </div>
       </div>
       <div class="book">
@@ -377,9 +385,9 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>공통수학2</b>유리함수</span></div>
       <p class="ask">y = 1/(x − 1)의 그래프는 왜 x = 1 근처에서 끝없이 치솟을까?</p>
       <div class="cmp" id="cp6">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 = 무선 그래프</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 = 무선 그래프</span></div>
         <div class="stage">
-          <canvas aria-label="학교에서 배운 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
+          <canvas aria-label="교과서 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>겹치는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
@@ -468,9 +476,9 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>대수</b>지수와 로그 · 지수함수와 로그함수</span></div>
       <p class="ask">log₂ x는 x가 두 배가 될 때마다 얼마나 커질까?</p>
       <div class="cmp" id="cp7">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 = 무선 그래프</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 = 무선 그래프</span></div>
         <div class="stage">
-          <canvas aria-label="학교에서 배운 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
+          <canvas aria-label="교과서 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>겹치는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
@@ -544,9 +552,9 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>대수</b>삼각함수 · 호도법과 삼각함수의 그래프</span></div>
       <p class="ask">원 위를 도는 점의 높이를 시간에 따라 그리면 어떤 모양이 될까?</p>
       <div class="cmp" id="cp8">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 = 무선 그래프</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 = 무선 그래프</span></div>
         <div class="stage">
-          <canvas aria-label="학교에서 배운 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
+          <canvas aria-label="교과서 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>겹치는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
@@ -633,9 +641,9 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>미적분 Ⅰ</b>미분계수와 도함수</span><span class="unit"><b>미적분 Ⅱ</b>삼각함수의 미분</span></div>
       <p class="ask">sin x를 미분하면 왜 cos x가 될까?</p>
       <div class="cmp" id="cp9">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 = 무선 그래프</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 = 무선 그래프</span></div>
         <div class="stage">
-          <canvas aria-label="학교에서 배운 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
+          <canvas aria-label="교과서 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>겹치는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
@@ -712,14 +720,14 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>미적분 Ⅰ</b>정적분</span><span class="unit"><b>대수</b>수열의 합</span><span class="unit"><b>미적분 Ⅱ</b>정적분과 급수의 합</span><span class="unit"><b>대수</b>삼각함수 · sin²θ + cos²θ = 1</span></div>
       <p class="ask">곡선 y = x² 아래, 0부터 1까지의 넓이는 왜 1/3일까?</p>
       <div class="cmp" id="cp10">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 → 무선 그래프 (같은 원리)</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 → 무선 그래프 (같은 원리)</span></div>
         <div class="stage">
-          <canvas aria-label="학교 그래프가 무선 그래프로 변하는 그림"></canvas>
+          <canvas aria-label="교과서 그래프가 무선 그래프로 변하는 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>변하는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
           </div>
-          <div class="status mstatus"><div class="msteps"><span class="mstep">① 학교 그래프</span><span class="mstep">② 변하기</span><span class="mstep">③ 기호 짝</span></div><p class="mcap"></p></div>
+          <div class="status mstatus"><div class="msteps"><span class="mstep">① 교과서 그래프</span><span class="mstep">② 변하기</span><span class="mstep">③ 기호 짝</span></div><p class="mcap"></p></div>
         </div>
       </div>
       <div class="book">
@@ -786,9 +794,9 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>기하</b>평면벡터 · 벡터의 내적</span></div>
       <p class="ask">기울기를 쓰지 않고도 두 화살표가 수직인지 알 수 있을까?</p>
       <div class="cmp" id="cp11">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 = 무선 그래프</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 = 무선 그래프</span></div>
         <div class="stage">
-          <canvas aria-label="학교에서 배운 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
+          <canvas aria-label="교과서 그래프와 무선 그래프를 겹쳐 놓은 그림"></canvas>
           <div class="controls">
             <button type="button" class="mplay"><span class="ic" aria-hidden="true">▶</span>겹치는 과정 보기</button>
             <span class="state">상태: <b class="mstate">결과 화면</b></span>
@@ -868,7 +876,7 @@ window.MathJax = {
       <div class="units"><span class="lbl">교과서 단원</span><span class="unit"><b>공통수학1</b>복소수</span><span class="unit out"><b>교과 밖</b>복소함수 · 등각사상</span></div>
       <p class="ask">바둑판 격자를 원판 안으로 옮기면 어떻게 될까?</p>
       <div class="cmp" id="cpK">
-        <div class="cmphead"><span class="cmpkind">학교 그래프 → 무선 그래프 (같은 원리)</span></div>
+        <div class="cmphead"><span class="cmpkind">교과서 그래프 → 무선 그래프 (같은 원리)</span></div>
         <div class="stage">
           <div class="cap">초록: R 일정선 · 주황/파랑: X 일정선(+/−) · 분홍 점: 30 + j40 Ω 안테나</div>
           <canvas id="cvK" aria-label="임피던스 평면 격자가 스미스 차트 원판으로 옮겨지는 그림"></canvas>
@@ -1800,7 +1808,7 @@ window.MathJax = {
 
 
 
-  /* ======== 학교 그래프 = 무선 그래프 비교 그림 ======== */
+  /* ======== 교과서 그래프 = 무선 그래프 비교 그림 ======== */
   const lerp=(a,b,m)=>a+(b-a)*m;
   const ease=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;
   const LBL=(o)=>Object.assign({size:12,weight:'700',halo:COL.screen},o||{});
@@ -1822,7 +1830,7 @@ window.MathJax = {
         if (side==='T'){ lab(g,'3',[(O[0]+A[0])/2,O[1]+12],COL.w,st,{align:'center'}); lab(g,'4',[A[0]+6,(A[1]+B[1])/2],COL.l,st); lab(g,'5',[(O[0]+B[0])/2-8,(O[1]+B[1])/2-6],COL.pi,st,{align:'right'}); }
         else { lab(g,'R',[(O[0]+A[0])/2,O[1]-10],COL.w,st,{align:'center'}); lab(g,'X',[A[0]-8,(A[1]+B[1])/2],COL.l,st,{align:'right'}); lab(g,'|Z|',[(O[0]+B[0])/2+8,(O[1]+B[1])/2+10],COL.pi,st); } },
       pairs:[['밑변 3','R = 30 Ω',COL.w],['높이 4','X = 40 Ω',COL.l],['빗변 5','|Z| = 50 Ω',COL.pi],['tan θ = 4/3','위상각 θ',COL.j]],
-      cap:['학교 그래프는 교과서의 3-4-5 직각삼각형, 무선 그래프는 임피던스 30 + j40 Ω입니다.','겹쳐 보면 두 삼각형이 정확히 포개집니다. 눈금만 10배 다릅니다.','밑변은 저항, 높이는 리액턴스, 빗변은 임피던스의 크기, 기울기는 위상각입니다.'] },
+      cap:['교과서 그래프는 교과서의 3-4-5 직각삼각형, 무선 그래프는 임피던스 30 + j40 Ω입니다.','겹쳐 보면 두 삼각형이 정확히 포개집니다. 눈금만 10배 다릅니다.','밑변은 저항, 높이는 리액턴스, 빗변은 임피던스의 크기, 기울기는 위상각입니다.'] },
 
     cp3: { kind:'morph', anchor:'i3',
       draw(g,w,h,m){
@@ -1854,7 +1862,7 @@ window.MathJax = {
       draw(g,M,side,st){ if (side==='T'){ crv(g,M,x=>(x-2)*(x-2)+1,0,4,COL.fg,st); const v=M(2,1); if(!st.dash) dot(g,v[0],v[1],5,COL.pi,'#fff'); lab(g,'꼭짓점 (2, 1)',[v[0]+8,v[1]-12],COL.pi,st); }
         else { crv(g,M,X=>X*X+900,-60,60,COL.fg,st); const v=M(0,900); dot(g,v[0],v[1],5,COL.pi,'#fff'); lab(g,'공진 X = 0',[v[0]+8,v[1]-12],COL.pi,st); } },
       pairs:[['x','리액턴스 X',COL.w],['꼭짓점 x = 2','공진 X = 0',COL.j],['최솟값 1','최솟값 R² = 900',COL.pi]],
-      cap:['학교 그래프는 꼭짓점이 (2, 1)인 포물선, 무선 그래프는 리액턴스에 따른 |Z|²입니다.','겹쳐 보면 두 포물선이 정확히 포개집니다.','꼭짓점의 위치는 공진(X = 0), 최솟값은 R²입니다. 30 + j40 Ω 안테나를 공진시키면 |Z|는 50 Ω에서 R = 30 Ω으로 가장 작아집니다.'] },
+      cap:['교과서 그래프는 꼭짓점이 (2, 1)인 포물선, 무선 그래프는 리액턴스에 따른 |Z|²입니다.','겹쳐 보면 두 포물선이 정확히 포개집니다.','꼭짓점의 위치는 공진(X = 0), 최솟값은 R²입니다. 30 + j40 Ω 안테나를 공진시키면 |Z|는 50 Ω에서 R = 30 Ω으로 가장 작아집니다.'] },
 
     cp5: { kind:'same', anchor:'i5',
       T:{x:[0,5],y:[0,10],tx:[[1,'1'],[2,'2'],[3,'3'],[4,'4']],ty:[[2,'2'],[4,'4'],[6,'6'],[8,'8']],tag:'중1 · y = 2x, y = 8/x'},
@@ -1862,7 +1870,7 @@ window.MathJax = {
       draw(g,M,side,st){ if (side==='T'){ crv(g,M,x=>2*x,0,5,COL.l,st); crv(g,M,x=>8/x,0.3,5,COL.c,st); const p=M(2,4); if(!st.dash) dot(g,p[0],p[1],5,COL.pi,'#fff'); lab(g,'(2, 4)',[p[0]+8,p[1]+12],COL.pi,st); }
         else { crv(g,M,f=>TAU*f,0,17.5,COL.l,st); crv(g,M,f=>307.8/f,1,17.5,COL.c,st); const p=M(7,43.98); dot(g,p[0],p[1],5,COL.pi,'#fff'); lab(g,'f₀ = 7.0 MHz',[p[0]+8,p[1]+12],COL.pi,st); } },
       pairs:[['x','주파수 f [MHz]',COL.w],['y','리액턴스 X [Ω]',COL.fg],['y = 2x','코일 2πfL',COL.l],['y = 8/x','콘덴서 1/(2πfC)',COL.c],['교점','공진',COL.pi]],
-      cap:['학교 그래프는 정비례 y = 2x와 반비례 y = 8/x, 무선 그래프는 L = 1 µH 코일과 C = 517 pF 콘덴서의 리액턴스입니다.','겹쳐 보면 직선과 곡선, 교점까지 정확히 포개집니다.','정비례 = 코일, 반비례 = 콘덴서, 교점 = 공진 주파수입니다.'] },
+      cap:['교과서 그래프는 정비례 y = 2x와 반비례 y = 8/x, 무선 그래프는 L = 1 µH 코일과 C = 517 pF 콘덴서의 리액턴스입니다.','겹쳐 보면 직선과 곡선, 교점까지 정확히 포개집니다.','정비례 = 코일, 반비례 = 콘덴서, 교점 = 공진 주파수입니다.'] },
 
     cp6: { kind:'same', anchor:'i6',
       T:{x:[0,1.05],y:[0,10],tx:[[0.25,'0.25'],[0.5,'0.5'],[0.75,'0.75'],[1,'1']],ty:[[2,'2'],[4,'4'],[6,'6'],[8,'8']],tag:'공통수학2 · y = −2/(x − 1) − 1'},
@@ -1870,7 +1878,7 @@ window.MathJax = {
       draw(g,M,side,st){ const a=M(1,0), b=M(1,10); ln(g,a,b,COL.pi,{dash:true},1.4); crv(g,M,x=>-2/(x-1)-1,0,0.995,COL.fg,st,400); const p=M(1/3,2); dot(g,p[0],p[1],5,COL.pi,'#fff');
         if (side==='T') lab(g,'점근선 x = 1',[b[0]-6,b[1]+12],COL.pi,st,{align:'right'}); else lab(g,'|Γ| = 1 (전반사)',[b[0]-6,b[1]+12],COL.pi,st,{align:'right'}); },
       pairs:[['x','|Γ|',COL.w],['y','SWR',COL.fg],['점근선 x = 1','|Γ| = 1, SWR → ∞',COL.pi],['(1/3, 2)','100 Ω 안테나, SWR 2',COL.j]],
-      cap:['학교 그래프는 유리함수 y = −2/(x − 1) − 1, 무선 그래프는 SWR 그래프입니다(0 ≤ x &lt; 1 부분).','두 식은 같은 식을 정리한 것이라 그래프가 완전히 겹칩니다.','x는 반사계수의 크기 |Γ|, 점근선 x = 1은 전부 반사되는 단선·단락입니다.'] },
+      cap:['교과서 그래프는 유리함수 y = −2/(x − 1) − 1, 무선 그래프는 SWR 그래프입니다(0 ≤ x &lt; 1 부분).','두 식은 같은 식을 정리한 것이라 그래프가 완전히 겹칩니다.','x는 반사계수의 크기 |Γ|, 점근선 x = 1은 전부 반사되는 단선·단락입니다.'] },
 
     cp7: { kind:'same', anchor:'i7',
       T:{x:[0,9],y:[0,3.6],tx:[[1,'1'],[2,'2'],[4,'4'],[8,'8']],ty:[[1,'1'],[2,'2'],[3,'3']],tag:'대수 · y = log₂ x'},
@@ -1878,14 +1886,14 @@ window.MathJax = {
       draw(g,M,side,st){ if (side==='T'){ crv(g,M,x=>Math.log2(x),0.3,9,COL.fg,st); [[1,2],[2,4],[4,8]].forEach(([a,b])=>{ const y=Math.log2(a); ln(g,M(a,y),M(b,y),COL.j,{dash:true},1.2); ln(g,M(b,y),M(b,y+1),COL.j,st,2.4); lab(g,'+1',[M(b,y+0.5)[0]+5,M(b,y+0.5)[1]],COL.j,st); }); }
         else { const f=P=>10*Math.log10(P); crv(g,M,f,30,900,COL.fg,st); [[100,200],[200,400],[400,800]].forEach(([a,b])=>{ ln(g,M(a,f(a)),M(b,f(a)),COL.j,{dash:true},1.2); ln(g,M(b,f(a)),M(b,f(b)),COL.j,st,2.4); lab(g,'+3 dB',[M(b,f(a)+1.5)[0]+5,M(b,f(a)+1.5)[1]],COL.j,st); }); } },
       pairs:[['x','P ÷ 100 W',COL.w],['log₂ x','(dBW − 20) ÷ 3',COL.fg],['두 배 → +1','두 배 → +3 dB',COL.j]],
-      cap:['학교 그래프는 y = log₂ x와 두 배 계단, 무선 그래프는 송신 전력을 dBW로 나타낸 그래프입니다.','겹쳐 보면 곡선과 계단이 그대로 포개집니다. 10·log₁₀ 2 ≈ 3이기 때문입니다.','x가 두 배 → 1칸은 전력이 두 배 → 3 dB입니다. 400 W로 올려야 S미터가 한 칸 오릅니다.'] },
+      cap:['교과서 그래프는 y = log₂ x와 두 배 계단, 무선 그래프는 송신 전력을 dBW로 나타낸 그래프입니다.','겹쳐 보면 곡선과 계단이 그대로 포개집니다. 10·log₁₀ 2 ≈ 3이기 때문입니다.','x가 두 배 → 1칸은 전력이 두 배 → 3 dB입니다. 400 W로 올려야 S미터가 한 칸 오릅니다.'] },
 
     cp8: { kind:'same', anchor:'i8',
       T:{x:[0,TAU],y:[-3.6,3.6],tx:[[Math.PI/2,'π/2'],[Math.PI,'π'],[3*Math.PI/2,'3π/2'],[TAU,'2π']],ty:[[-3,'−3'],[3,'3']],tag:'대수 · y = 3 sin 2x'},
       R:{x:[0,285.7],y:[-120,120],tx:[[71.4,'71'],[142.9,'143'],[214.3,'214'],[285.7,'286 ns']],ty:[[-100,'−100'],[100,'100 V']],tag:'무선 · 7 MHz 교류 전압'},
       draw(g,M,side,st){ if (side==='T') crv(g,M,x=>3*Math.sin(2*x),0,TAU,COL.pi,st,400); else crv(g,M,t=>100*Math.sin(TAU*0.007*t),0,285.7,COL.pi,st,400); },
       pairs:[['진폭 3','꼭대기 전압 100 V',COL.l],['b = 2','2πf (f = 7 MHz)',COL.j],['x','시간 t',COL.w],['주기 π','주기 143 ns',COL.pi]],
-      cap:['학교 그래프는 y = 3 sin 2x, 무선 그래프는 꼭대기 100 V인 7 MHz 교류 전압입니다.','겹쳐 보면 물결이 정확히 포개집니다. 눈금만 다릅니다.','진폭은 꼭대기 전압, b는 2πf, 주기 2π/b는 1/f입니다.'] },
+      cap:['교과서 그래프는 y = 3 sin 2x, 무선 그래프는 꼭대기 100 V인 7 MHz 교류 전압입니다.','겹쳐 보면 물결이 정확히 포개집니다. 눈금만 다릅니다.','진폭은 꼭대기 전압, b는 2πf, 주기 2π/b는 1/f입니다.'] },
 
     cp9: { kind:'same', anchor:'i9',
       T:{x:[0,TAU],y:[-1.3,1.3],tx:[[Math.PI/2,'π/2'],[Math.PI,'π'],[3*Math.PI/2,'3π/2']],ty:[[-1,'−1'],[1,'1']],tag:'미적분 Ⅱ · sin x와 (sin x)′ = cos x'},
@@ -1894,7 +1902,7 @@ window.MathJax = {
         if (side==='T'){ lab(g,'sin x',[M(Math.PI/2,1)[0],M(Math.PI/2,1)[1]-10],COL.w,st,{align:'center'}); lab(g,'cos x',[M(0.15,1)[0],M(0.15,1)[1]-10],COL.pi,st); }
         else { lab(g,'전압 v',[M(Math.PI/2,1)[0],M(Math.PI/2,1)[1]-10],COL.w,st,{align:'center'}); lab(g,'전류 i',[M(0.15,1)[0],M(0.15,1)[1]-10],COL.pi,st); } },
       pairs:[['sin x','전압 v',COL.w],['cos x = (sin x)′','전류 i = C·dv/dt',COL.pi],['x','위상 ωt',COL.fg]],
-      cap:['학교 그래프는 sin x와 그 도함수 cos x, 무선 그래프는 콘덴서의 전압과 전류입니다.','겹쳐 보면 두 쌍의 물결이 그대로 포개집니다.','전류는 전압의 변화율이라 cos 모양이고, 꼭대기에 90° 먼저 닿습니다.'] },
+      cap:['교과서 그래프는 sin x와 그 도함수 cos x, 무선 그래프는 콘덴서의 전압과 전류입니다.','겹쳐 보면 두 쌍의 물결이 그대로 포개집니다.','전류는 전압의 변화율이라 cos 모양이고, 꼭대기에 90° 먼저 닿습니다.'] },
 
     cp10: { kind:'morph', anchor:'i10',
       draw(g,w,h,m){
@@ -1926,7 +1934,7 @@ window.MathJax = {
         if (side==='T'){ lab(g,'a',[A[0]-6,A[1]+12],COL.w,st,{align:'right'}); lab(g,'b',[B[0]+8,B[1]],COL.pi,st); lab(g,'|b| cos θ',[(O[0]+S[0])/2,O[1]+14],COL.f,st,{align:'center'}); }
         else { lab(g,'전압 V',[A[0]-6,A[1]-12],COL.w,st,{align:'right'}); lab(g,'전류 I',[B[0]-8,B[1]],COL.pi,st,{align:'right'}); lab(g,'I cos φ',[(O[0]+S[0])/2,O[1]-12],COL.f,st,{align:'center'}); } },
       pairs:[['a','전압 V',COL.w],['b','전류 I',COL.pi],['그림자 |b| cos θ','I cos φ',COL.f],['a · b = 4 × 3 × 0.6 = 7.2','P = 100 × 2 × 0.6 = 120 W',COL.fg]],
-      cap:['학교 그래프는 두 벡터와 b의 그림자, 무선 그래프는 전압과 전류 화살표입니다.','사이각이 같으면(cos = 0.6) 두 그림은 정확히 포개집니다.','내적 = 길이 × 그림자 → 유효전력 P = V × I cos φ.'] }
+      cap:['교과서 그래프는 두 벡터와 b의 그림자, 무선 그래프는 전압과 전류 화살표입니다.','사이각이 같으면(cos = 0.6) 두 그림은 정확히 포개집니다.','내적 = 길이 × 그림자 → 유효전력 P = V × I cos φ.'] }
   };
 
   function xt(g,a,b,pa,pb,c,o,m){
@@ -1938,7 +1946,7 @@ window.MathJax = {
     const sp=CMP[id], cv=root.querySelector('canvas'), pb=root.querySelector('.mplay');
     const steps=root.querySelectorAll('.mstep'), capEl=root.querySelector('.mcap'), stEl=root.querySelector('.mstate');
     const D0=1.5, D1=sp.kind==='morph'?2.0:1.6, END=D0+D1+0.5;
-    let t=END, playing=false, raf=0, last=0, played=false, hl=null;
+    let t=END, playing=false, raf=0, last=0, played=false, hl=null, marks=[], pairHl=null;
     const verb = sp.kind==='same' ? '겹치는 과정 보기' : '변하는 과정 보기';
     function phase(){ if (t<D0) return {ov:0,step:0}; if (t<D0+D1) return {ov:ease((t-D0)/D1),step:1}; return {ov:1,step:2}; }
     function panel(g,box,S,side,st,ovAlpha){
@@ -1954,6 +1962,11 @@ window.MathJax = {
       if (side==='T' || ovAlpha<0.05){ const z=M(0,0); const zx=Math.min(Math.max(z[0],ix0),ix1), zy=Math.min(Math.max(z[1],iy0),iy1);
         seg(g,ix0,zy,ix1,zy,COL.muted,1.2); seg(g,zx,iy0,zx,iy1,COL.muted,1.2); }
       g.save(); g.beginPath(); g.rect(ix0-6,iy0-6,ix1-ix0+12,iy1-iy0+12); g.clip(); sp.draw(g,M,side,st); g.restore();
+      /* 대본이 짚는 점: 점선 보조선 + 값 */
+      marks.filter(k=>k.side===side && (side==='T' || ovAlpha<0.05)).forEach(k=>{ const p=M(k.x,k.y), b0=M(k.x,S.y[0]), a0=M(S.x[0],k.y);
+        seg(g,p[0],p[1],b0[0],b0[1],k.c||COL.j,1.2,[4,4]); seg(g,p[0],p[1],a0[0],a0[1],k.c||COL.j,1.2,[4,4]);
+        dot(g,p[0],p[1],5.5,k.c||COL.j,'#fff');
+        if (k.label) text(g,k.label,p[0]+(k.dx||8),p[1]+(k.dy||-10),k.c||COL.j,{size:12,weight:'700',halo:COL.screen}); });
     }
     const B=(a,b,m)=>({x:lerp(a.x,b.x,m),y:lerp(a.y,b.y,m),w:lerp(a.w,b.w,m),h:lerp(a.h,b.h,m)});
     function rowText(g,w,y,str,col){ g.save(); g.font='700 12.5px '+SANS; const tw=g.measureText(str).width; g.restore(); const sc=tw>w-16?(w-16)/tw:1; text(g,str,w/2,y,col,{size:12.5*sc,weight:'700',align:'center',halo:COL.screen}); }
@@ -1962,7 +1975,9 @@ window.MathJax = {
       const L=[[]]; let cur=0; parts.forEach((p,i)=>{ const add=widths[i]+(L[L.length-1].length?18:0); if (cur+add>w-16 && L[L.length-1].length){ L.push([]); cur=0; } L[L.length-1].push(i); cur+=widths[i]+(L[L.length-1].length>1?18:0); });
       const lh=17, y0=rowY-(L.length-1)*lh/2;
       L.forEach((ln_,li)=>{ const tw=ln_.reduce((a,i)=>a+widths[i],0)+18*(ln_.length-1); const sc=tw>w-16?(w-16)/tw:1; let x=(w-tw*sc)/2;
-        ln_.forEach(i=>{ text(g,parts[i],x,y0+li*lh,items[i][2],{size:12.5*sc,weight:'700',halo:COL.screen}); x+=(widths[i]+18)*sc; }); });
+        ln_.forEach(i=>{ g.save(); if (pairHl!=null && pairHl!==i) g.globalAlpha=.22;
+          if (pairHl===i){ g.fillStyle='rgba(255,205,40,.35)'; g.fillRect(x-4,y0+li*lh-9,widths[i]*sc+8,18); }
+          text(g,parts[i],x,y0+li*lh,items[i][2],{size:12.5*sc,weight:'700',halo:COL.screen}); g.restore(); x+=(widths[i]+18)*sc; }); });
     }
     function draw(){
       const w=cv.parentElement.clientWidth||320, narrow=w<560, pairsH=narrow?64:40;
@@ -1983,7 +1998,7 @@ window.MathJax = {
         panel(g,bT,sp.T,'T',{lw:3},0);
         panel(g,bR,sp.R,'R',{dash:m>0.02, over:m>0.02, lw:m>0.02?2.2:2.6, hideLab:m>0.5},m);
         g.save(); g.globalAlpha=1-m; text(g,sp.T.tag,bT.x+8,bT.y+12,COL.j,{size:11.5,weight:'700',halo:COL.screen}); text(g,sp.R.tag,bR.x+8,bR.y+12,COL.f,{size:11.5,weight:'700',halo:COL.screen}); g.restore();
-        if (m>0.02){ g.save(); g.globalAlpha=m; text(g,'겹쳐 보기 · 실선 = 학교 그래프, 흰 점선 = 무선 그래프',bT.x+8,bT.y+12,COL.fg,{size:11.5,weight:'700',halo:COL.screen}); g.restore(); }
+        if (m>0.02){ g.save(); g.globalAlpha=m; text(g,'겹쳐 보기 · 실선 = 교과서 그래프, 흰 점선 = 무선 그래프',bT.x+8,bT.y+12,COL.fg,{size:11.5,weight:'700',halo:COL.screen}); g.restore(); }
         const rowY=H-pairsH/2;
         if (step===1) rowText(g,w,rowY,'학교: '+sp.T.tag+'  ·  무선: '+sp.R.tag.replace('무선 · ',''),COL.fg);
         if (step===2) pairsRow(g,w,rowY);
@@ -2009,7 +2024,10 @@ window.MathJax = {
     root._cmp={D0, END,
       set:(tt)=>{ playing=false; cancelAnimationFrame(raf); t=Math.min(tt,END); draw(); label(); },
       hl:(k)=>{ hl=k||null; draw(); },
-      play:(from)=>{ cancelAnimationFrame(raf); hl=null; t=from==null?0:from; playing=true; label(); last=performance.now(); raf=requestAnimationFrame(loop); }};
+      mark:(side,x,y,label,o)=>{ marks.push(Object.assign({side,x,y,label},o||{})); draw(); },
+      clear:()=>{ marks=[]; pairHl=null; draw(); },
+      pair:(i)=>{ pairHl=(i==null?null:i); draw(); },
+      play:(from)=>{ cancelAnimationFrame(raf); hl=null; marks=[]; pairHl=null; t=from==null?0:from; playing=true; label(); last=performance.now(); raf=requestAnimationFrame(loop); }};
     label();
     reg(draw);
   });
@@ -2020,15 +2038,15 @@ window.MathJax = {
 /* 듣기 대본: s = 항목(id), at = 강조할 곳(항목 안 선택자), i = 같은 선택자 중 몇 번째, t = 읽을 말, a = 그 순간 할 조작
    조작: ['side','T'|'R'] 나란히 놓고 칸 강조 · ['hl','T'|'R'] 칸 강조 · ['play'] 겹치기(또는 변하기) 재생 · ['reset'] 처음 상태
          ['range', 입력 id, 값, 시간ms] 슬라이더 옮기기 · ['click', 선택자] 버튼 누르기 · ['open'] 강조한 곳의 풀이 펼치기
-   그림이 화면 폭에 따라 좌우·위아래로 놓이므로, 대본에는 "왼쪽·오른쪽" 대신 "학교 그래프·무선 그래프"와 색 이름만 씁니다. */
+   그림이 화면 폭에 따라 좌우·위아래로 놓이므로, 대본에는 "왼쪽·오른쪽" 대신 "교과서 그래프·무선 그래프"와 색 이름만 씁니다. */
 window.NARR = [
   /* ---------- 머리말 ---------- */
   {pg:'M', s:'hero', at:'h1', t:'교과서 속 공식, 중등편입니다. 기울기, 삼각비, 피타고라스 정리, 정비례와 반비례, 이차함수. 중학교 교과서의 이 다섯 가지만으로 안테나의 위상각과 임피던스, 공진 주파수까지 설명할 수 있습니다.'},
   {pg:'H', s:'hero', at:'h1', t:'교과서 속 공식, 고등편입니다. 복소수, 유리함수, 로그, 삼각함수, 미분과 적분, 벡터. 고등학교 수학으로 반사계수와 SWR, 데시벨, 교류의 실효값과 전력을 설명하고, 마지막에는 대학 수학으로 스미스 차트까지 이어 갑니다.'},
-  {s:'hero', at:'.qs', t:'항목마다 학교에서 배운 그래프와 무선 그래프를 먼저 겹쳐 봅니다. 모양이 같다는 것을 확인한 뒤 교과서 공식을 짚고, 그 공식이 무선에서 어떻게 쓰이는지로 넘어갑니다. 예제에는 30 플러스 제이 40 옴짜리 안테나 하나가 계속 등장합니다.'},
+  {s:'hero', at:'.qs', t:'항목마다 교과서 그래프와 무선 그래프를 먼저 겹쳐 봅니다. 모양이 같다는 것을 확인한 뒤 교과서 공식을 짚고, 그 공식이 무선에서 어떻게 쓰이는지로 넘어갑니다. 예제에는 30 플러스 제이 40 옴짜리 안테나 하나가 계속 등장합니다.'},
 
   /* ---------- 중등 1 · 기울기와 삼각비 ---------- */
-  {s:'i1', at:'.cmp', a:[['side','T']], t:'중2에서 배운 기울기와 중3에서 배운 삼각비입니다. 먼저 학교 그래프. 밑변 3, 높이 4, 빗변 5인 직각삼각형입니다. 빗변의 기울기는 높이 나누기 밑변, 3분의 4이고, 삼각비로 쓰면 탄젠트 세타가 3분의 4입니다.'},
+  {s:'i1', at:'.cmp', a:[['side','T']], t:'중2에서 배운 기울기와 중3에서 배운 삼각비입니다. 먼저 교과서 그래프. 밑변 3, 높이 4, 빗변 5인 직각삼각형입니다. 빗변의 기울기는 높이 나누기 밑변, 3분의 4이고, 삼각비로 쓰면 탄젠트 세타가 3분의 4입니다.'},
   {s:'i1', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 안테나 분석기가 저항 30 옴, 리액턴스 40 옴을 보여 준 안테나를, 가로 저항, 세로 리액턴스인 평면에 찍었습니다.'},
   {s:'i1', at:'.cmp', a:[['play']], t:'두 그림을 겹쳐 보겠습니다. 눈금만 10배 다를 뿐, 두 삼각형이 정확히 포개집니다. 밑변은 저항, 높이는 리액턴스, 빗변은 임피던스의 크기, 그리고 기울어진 각이 위상각입니다.'},
   {s:'i1', at:'.book .stage', a:[['range','aM1',17,1800]], t:'기울기는 x가 1 늘 때 y가 얼마나 느는지의 비율이고, 직선 위 어느 두 점을 잡아도 같습니다. 이 비율이 곧 기울어진 각의 탄젠트입니다. 그림에서 기울기를 1에서 1.7로 키우면 각은 45도에서 약 60도로 커집니다.'},
@@ -2043,17 +2061,30 @@ window.NARR = [
   {s:'i2', at:'.radio .stage', a:[['click','[data-r="30"][data-x="-40"]']], t:'리액턴스를 마이너스 40으로 바꿔 보겠습니다. 삼각형이 뒤집혀 콘덴서 쪽이 되지만, 크기는 여전히 50 옴입니다. 제곱하면 부호가 사라지기 때문입니다.'},
   {s:'i2', at:'.radio .ex', a:[['open']], t:'그렇다면 크기가 50 옴이니 50 옴 케이블과 정합된 걸까요? 아닙니다. 정합은 화살표의 길이가 아니라 점의 위치, 저항 50에 리액턴스 0인 한 점입니다. 30 플러스 제이 40 옴은 길이만 같은 다른 점입니다.'},
 
-  /* ---------- 중등 3 · 정비례·반비례와 교점 ---------- */
-  {s:'i5', at:'.cmp', a:[['side','T']], t:'중1에서 배운 정비례와 반비례입니다. 먼저 학교 그래프. 주황 직선은 y는 2x, 파란 곡선은 y는 x분의 8. 두 그래프는 x가 2일 때 한 점에서 만납니다.'},
-  {s:'i5', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 가로가 주파수, 세로가 리액턴스입니다. 주황 직선은 1 마이크로헨리 코일, 파란 곡선은 517 피코패럿 콘덴서입니다.'},
-  {s:'i5', at:'.cmp', a:[['play']], t:'두 그림을 겹쳐 보겠습니다. 직선과 곡선, 교점까지 정확히 포개집니다. 코일의 리액턴스 2파이 f L은 주파수에 정비례하고, 콘덴서의 리액턴스 2파이 f C 분의 1은 주파수에 반비례합니다.'},
-  {s:'i5', at:'.book .key', t:'교과서에서는 교점을 식으로 구합니다. 2x와 x분의 8을 같다고 놓고 양변에 x를 곱하면 2x 제곱이 8, 이차방정식이 됩니다. 반비례가 끼면 이차식이 되고, 이차식을 풀면 루트가 나옵니다.'},
-  {s:'i5', at:'.radio h4', i:2, t:'무선에서는 두 리액턴스가 같아져 서로 지워지는 교점이 공진 주파수입니다. 같다고 놓고 f를 곱하면 f 제곱이 나오고, 루트를 씌우면 공진 공식, f 제로는 2파이 루트 LC 분의 1이 됩니다. 공진 공식에 루트가 들어 있는 이유가 바로 이것입니다.'},
-  {s:'i5', at:'.radio .stage', a:[['range','cD',1000,2200]], t:'그림에서 콘덴서 용량을 키워 보겠습니다. 파란 곡선이 내려가면서 교점이 낮은 주파수 쪽으로 옮겨 갑니다.'},
-  {s:'i5', at:'.radio .ex', a:[['range','cD',517,600],['open']], t:'무선 예제의 답은 약 7.0 메가헤르츠입니다. 용량을 네 배로 늘리면 루트 안이 네 배가 되어 주파수는 절반, 약 3.5 메가헤르츠가 됩니다.'},
+  /* ---------- 중등 3 · 정비례·반비례와 교점 (자세한 대본 시안) ---------- */
+  {s:'i5', at:'.cmp', a:[['side','T']], t:'중등 3은 중1에서 배운 정비례와 반비례, 그리고 두 그래프의 교점입니다. 교과서 그래프부터 읽어 보겠습니다. 가로축이 x, 세로축이 y입니다.'},
+  {s:'i5', at:'.cmp', a:[['wait',2600],['mark','T',1,2,'(1, 2)',{c:'#c25100'}],['wait',1500],['mark','T',2,4,'',{c:'#c25100'}],['wait',1300],['mark','T',4,8,'(4, 8)',{c:'#c25100',dx:-48}]], t:'주황 직선은 y는 2x입니다. x가 1일 때 y는 2, x가 2일 때 4, x가 4일 때 8. x가 두 배가 되면 y도 두 배가 됩니다. 이 관계가 정비례이고, 그래프는 원점을 지나는 직선입니다. 직선의 기울기 2가 곧 비례상수입니다.'},
+  {s:'i5', at:'.cmp', a:[['clear'],['hl','T'],['wait',2600],['mark','T',1,8,'(1, 8)',{c:'#1f63c6'}],['wait',1300],['mark','T',2,4,'',{c:'#1f63c6'}],['wait',1300],['mark','T',4,2,'(4, 2)',{c:'#1f63c6',dy:-12}]], t:'파란 곡선은 y는 x분의 8입니다. x가 1일 때 8, 2일 때 4, 4일 때 2. 이번에는 x가 두 배가 되면 y가 절반이 됩니다. x와 y를 곱하면 언제나 8, 이 관계가 반비례입니다. x가 0에 가까워지면 y는 한없이 커지고, x가 커지면 y는 0에 가까워질 뿐 닿지 않습니다.'},
+  {s:'i5', at:'.cmp', a:[['clear'],['hl','T'],['mark','T',2,4,'',{c:'#c2185b'}]], t:'두 그래프는 한 점에서 만납니다. x가 2일 때 직선도 4, 곡선도 4. 교점은 2, 4입니다. 직선은 오르기만 하고 곡선은 내려가기만 하니, x가 양수인 쪽에서 만나는 점은 이 하나뿐입니다.'},
+  {s:'i5', at:'.cmp', a:[['clear'],['hl','R'],['wait',9500],['mark','R',3.5,22,'22 Ω',{c:'#c25100'}],['wait',1400],['mark','R',7,44,'',{c:'#c25100'}],['wait',1300],['mark','R',14,88,'88 Ω',{c:'#c25100',dx:-52}]], t:'이번엔 무선 그래프입니다. 가로축은 주파수, 단위는 메가헤르츠. 세로축은 리액턴스, 단위는 옴입니다. 리액턴스는 코일이나 콘덴서가 교류의 흐름을 방해하는 정도입니다. 주황 직선은 1 마이크로헨리 코일입니다. 3.5 메가헤르츠에서 22옴, 7에서 44, 14에서 88. 주파수가 두 배면 리액턴스도 두 배, 정비례입니다.'},
+  {s:'i5', at:'.cmp', a:[['clear'],['hl','R'],['wait',2400],['mark','R',3.5,88,'88 Ω',{c:'#1f63c6'}],['wait',1400],['mark','R',14,22,'22 Ω',{c:'#1f63c6',dx:-46,dy:-12}],['wait',3200],['mark','R',7,44,'',{c:'#c2185b'}]], t:'파란 곡선은 517 피코패럿 콘덴서입니다. 3.5 메가헤르츠에서 88옴, 14에서 22. 주파수가 두 배면 리액턴스는 절반, 반비례입니다. 그리고 두 선은 7 메가헤르츠, 44옴에서 만납니다.'},
+  {s:'i5', at:'.cmp', a:[['play']], t:'두 그림을 겹쳐 보겠습니다. 가로 눈금 1을 3.5 메가헤르츠에, 세로 눈금 1을 11옴에 맞추면, 직선과 곡선, 교점까지 정확히 포개집니다.'},
+  {s:'i5', at:'.cmp', a:[['pair',0],['wait',2300],['pair',1]], t:'짝을 하나씩 맞춰 보겠습니다. x 자리에는 주파수 f가, y 자리에는 리액턴스 X가 들어갑니다.'},
+  {s:'i5', at:'.cmp', a:[['pair',2]], t:'y는 2x는 코일의 리액턴스, 2파이 f L입니다. 2 대신 2파이 L이라는 상수가 들어갔을 뿐, 주파수에 비례하는 같은 꼴입니다.'},
+  {s:'i5', at:'.cmp', a:[['pair',3]], t:'y는 x분의 8은 콘덴서의 리액턴스, 2파이 f C 분의 1입니다. 8 대신 2파이 C 분의 1이 들어간, 같은 반비례입니다.'},
+  {s:'i5', at:'.cmp', a:[['pair',4]], t:'그리고 교점은 공진입니다. 코일과 콘덴서의 방해가 똑같아져 서로 지워지는 주파수, 이 회로에서는 7 메가헤르츠입니다.'},
+  {s:'i5', at:'.cmp', a:[['pair',null]], t:'다른 점도 있습니다. 교과서의 정비례와 반비례는 x가 음수인 곳에도 그래프가 있지만, 주파수와 리액턴스의 크기에는 음수가 없어서 무선에서는 양수 쪽만 씁니다. 또 교과서의 2와 8은 그냥 숫자지만, 무선의 상수는 코일과 콘덴서의 값이라 부품을 바꾸면 선이 움직입니다.'},
+  {s:'i5', at:'.book .stage', t:'교과서에서 교점을 구하는 방법을 따라가 보겠습니다. 2x와 x분의 8을 같다고 놓습니다. 양변에 x를 곱하면 2x 제곱은 8, x 제곱은 4. 제곱해서 4가 되는 수는 2와 마이너스 2, 두 개입니다. 마이너스 2는 x가 음수인 쪽의 교점이고, 양수 쪽 교점이 x가 2인 점입니다. 반비례가 끼면 식이 이차가 되고, 이차를 풀면 제곱근이 나옵니다.'},
+  {s:'i5', at:'.book .stage', a:[['range','kM4',2,1800],['range','kM4',8,1500]], t:'그림에서 반비례의 상수를 줄여 보겠습니다. 곡선이 원점 쪽으로 다가가면서 교점도 따라 움직입니다. 교점은 두 식이 같아지는 곳이라, 어느 한쪽이 바뀌면 함께 옮겨 갑니다.'},
+  {s:'i5', at:'.radio h4', i:0, t:'이제 무선 쪽입니다. 왜 코일은 정비례일까요? 코일은 흐르는 전류가 바뀌는 것을 막으려는 부품입니다. 주파수가 높으면 1초에 전류의 방향이 더 많이 바뀌고, 그만큼 코일이 더 세게 버팁니다. 그래서 리액턴스가 주파수에 비례해 커집니다.'},
+  {s:'i5', at:'.radio h4', i:1, t:'콘덴서는 반대입니다. 콘덴서는 전하를 채웠다 비웠다 하면서 전류를 흘립니다. 주파수가 높을수록 채우고 비우는 일이 자주 일어나 전류가 더 잘 흐르고, 방해는 주파수에 반비례해 줄어듭니다.'},
+  {s:'i5', at:'.radio h4', i:2, t:'교점을 구하는 방법도 교과서와 같습니다. 2파이 f L과 2파이 f C 분의 1을 같다고 놓고 양변에 f를 곱하면 f 제곱이 나옵니다. 정리하면 f 제곱은 2파이의 제곱 L C 분의 1, 루트를 씌우면 f 제로는 2파이 루트 L C 분의 1. 교과서에서 x 제곱이 4라서 x가 2였던 것과 똑같이, 공진 공식에 루트가 들어가는 이유입니다. 주파수에는 음수가 없으니 플러스 쪽만 씁니다.'},
+  {s:'i5', at:'.radio .stage', a:[['range','cD',1000,2200]], t:'콘덴서 용량을 키워 보겠습니다. 용량이 커지면 같은 주파수에서 콘덴서의 방해가 줄어 파란 곡선이 내려가고, 교점은 낮은 주파수 쪽으로 옮겨 갑니다. 수신기의 바리콘을 돌려 용량을 키우면 낮은 주파수에 맞춰지는 것이 바로 이 원리입니다.'},
+  {s:'i5', at:'.radio .ex', a:[['range','cD',517,600],['open']], t:'무선 예제를 풀어 보겠습니다. L은 1 마이크로헨리, C는 517 피코패럿입니다. 둘을 곱하면 517 곱하기 10의 마이너스 18제곱, 루트를 씌우면 약 2.27 곱하기 10의 마이너스 8제곱. 여기에 2파이를 곱해 뒤집으면 약 7.0 메가헤르츠입니다. C만 네 배로 늘리면 루트 안이 네 배, 루트 값은 두 배가 되어 주파수는 절반인 약 3.5 메가헤르츠가 됩니다.'},
+  {s:'i5', at:'.radio .ex', t:'정리하면, 교과서의 정비례 y는 ax가 코일, 반비례 y는 x분의 k가 콘덴서, 두 그래프의 교점이 공진입니다. 그리고 교점을 구할 때 생기는 제곱근이 공진 공식의 루트입니다.'},
 
   /* ---------- 중등 4 · 이차함수 ---------- */
-  {s:'i4', at:'.cmp', a:[['side','T']], t:'중3에서 배운 이차함수입니다. 먼저 학교 그래프. 꼭짓점이 2, 1인 포물선입니다. 아래로 볼록하니 꼭짓점에서 값이 가장 작습니다.'},
+  {s:'i4', at:'.cmp', a:[['side','T']], t:'중3에서 배운 이차함수입니다. 먼저 교과서 그래프. 꼭짓점이 2, 1인 포물선입니다. 아래로 볼록하니 꼭짓점에서 값이 가장 작습니다.'},
   {s:'i4', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 저항이 30 옴인 안테나에서 리액턴스 X를 바꿀 때, 임피던스 크기의 제곱이 어떻게 변하는지 그렸습니다. 식은 X 제곱 더하기 900입니다.'},
   {s:'i4', at:'.cmp', a:[['play']], t:'겹쳐 보면 두 포물선이 포개집니다. 꼭짓점은 리액턴스가 0인 곳, 곧 공진입니다. 공진에서 임피던스가 가장 작아지고, 그때 남는 것은 저항뿐입니다.'},
   {s:'i4', at:'.book .key', t:'교과서의 핵심은 완전제곱식입니다. a x 제곱 더하기 b x 더하기 c를 제곱 꼴로 바꾸면, 괄호 안이 0이 되는 x, 곧 마이너스 2a 분의 b에서 최소나 최대가 됩니다. 제곱은 0보다 작아질 수 없기 때문입니다.'},
@@ -2063,7 +2094,7 @@ window.NARR = [
   {pg:'M', s:'next', at:'.next', t:'중등편은 여기까지입니다. 임피던스에 붙은 j, 반사와 SWR, 데시벨, 교류의 실효값은 고등편에서 고등학교 수학으로 이어 갑니다.'},
 
   /* ---------- 고등 1 · 수직 조건과 복소수 ---------- */
-  {s:'i3', at:'.cmp', a:[['reset']], t:'고1에서 배우는 두 직선의 수직 조건과 복소수입니다. 이 그림은 학교 그래프가 무선 그래프로 바뀌는 과정을 보여 줍니다. 복소평면 위의 점 3 플러스 i에 i를 곱하면 마이너스 1 플러스 3i, 점이 원점을 중심으로 90도 돌아갑니다.'},
+  {s:'i3', at:'.cmp', a:[['reset']], t:'고1에서 배우는 두 직선의 수직 조건과 복소수입니다. 이 그림은 교과서 그래프가 무선 그래프로 바뀌는 과정을 보여 줍니다. 복소평면 위의 점 3 플러스 i에 i를 곱하면 마이너스 1 플러스 3i, 점이 원점을 중심으로 90도 돌아갑니다.'},
   {s:'i3', at:'.cmp', a:[['play']], t:'이제 i가 j로, 실수축이 저항축으로, 허수축이 리액턴스축으로 바뀝니다. 코일은 플러스 jX, 콘덴서는 마이너스 jX. 리액턴스를 저항과 직각 방향에 그리는 이유가 i를 곱하면 90도 돈다는 바로 이 원리입니다.'},
   {s:'i3', at:'.book .key', t:'수직 조건, 기울기의 곱이 마이너스 1이라는 식도 같은 원리입니다. 가로 1, 세로 m인 작은 삼각형을 90도 돌리면 가로와 세로가 자리를 바꾸고 방향 하나가 뒤집힙니다. 그래서 새 기울기는 마이너스 m분의 1, 곱하면 마이너스 1입니다.'},
   {s:'i3', at:'.book .stage', a:[['click','#rotB']], t:'그림에서 삼각형을 90도 돌려 보면, 청록의 처음 가로와 주황의 처음 세로가 서로 자리를 바꾸는 것이 보입니다.'},
@@ -2071,15 +2102,15 @@ window.NARR = [
   {s:'i3', at:'.radio .ex', a:[['open']], t:'무선 예제입니다. 30 플러스 제이 40 옴 안테나에 마이너스 제이 40 옴 콘덴서를 직렬로 달면 허수부끼리 지워져 30 옴만 남습니다. 크기는 50 옴에서 30 옴으로 줄고, 이 상태가 공진입니다. 중등 4에서 본 포물선의 꼭짓점이 바로 여기입니다.'},
 
   /* ---------- 고등 2 · 유리함수와 SWR ---------- */
-  {s:'i6', at:'.cmp', a:[['side','T']], t:'공통수학2의 유리함수입니다. 먼저 학교 그래프. x가 1에 가까워질수록 값이 끝없이 커지고, x는 1인 세로선에는 끝내 닿지 않습니다. 이 선이 점근선입니다.'},
+  {s:'i6', at:'.cmp', a:[['side','T']], t:'공통수학2의 유리함수입니다. 먼저 교과서 그래프. x가 1에 가까워질수록 값이 끝없이 커지고, x는 1인 세로선에는 끝내 닿지 않습니다. 이 선이 점근선입니다.'},
   {s:'i6', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 반사계수의 크기에 따른 SWR, 곧 1 빼기 감마 분의 1 더하기 감마입니다.'},
-  {s:'i6', at:'.cmp', a:[['play']], t:'겹쳐 보면 완전히 하나가 됩니다. SWR 식을 정리하면 학교 그래프의 식과 똑같아지기 때문입니다. 점근선은 반사계수가 1, 곧 케이블 끝이 끊기거나 붙어서 전부 되돌아오는 상태이고, 이때 SWR은 한없이 커집니다.'},
+  {s:'i6', at:'.cmp', a:[['play']], t:'겹쳐 보면 완전히 하나가 됩니다. SWR 식을 정리하면 교과서 그래프의 식과 똑같아지기 때문입니다. 점근선은 반사계수가 1, 곧 케이블 끝이 끊기거나 붙어서 전부 되돌아오는 상태이고, 이때 SWR은 한없이 커집니다.'},
   {s:'i6', at:'.book .stage', a:[['click','#ex1M5']], t:'교과서에서는 분수식을 몫과 나머지로 나눠 점근선을 찾습니다. x 빼기 1 분의 2x 더하기 1은 x 빼기 1 분의 3 더하기 2로 바뀌고, 점근선은 x는 1, y는 2입니다.'},
   {s:'i6', at:'.radio .terms', t:'반사계수 감마는 Z 빼기 50 나누기 Z 더하기 50, 되돌아오는 전압의 비율입니다. 되돌아오는 전력은 그 제곱입니다.'},
   {s:'i6', at:'.radio .ex', a:[['range','rE',650,800],['open']], t:'무선 예제처럼 100 옴 안테나를 50 옴 케이블에 이으면 감마는 3분의 1, SWR은 2입니다. 되돌아오는 전력은 9분의 1, 약 11퍼센트. 안테나로 가는 88.9퍼센트는 중등 4에서 부하가 100 옴일 때 받는 전력과 같은 값입니다.'},
 
   /* ---------- 고등 3 · 로그와 데시벨 ---------- */
-  {s:'i7', at:'.cmp', a:[['side','T']], t:'대수 과목의 로그함수입니다. 먼저 학교 그래프. 로그 2의 x 곡선에, x가 두 배가 될 때마다 y가 1씩 오르는 계단을 함께 그렸습니다.'},
+  {s:'i7', at:'.cmp', a:[['side','T']], t:'대수 과목의 로그함수입니다. 먼저 교과서 그래프. 로그 2의 x 곡선에, x가 두 배가 될 때마다 y가 1씩 오르는 계단을 함께 그렸습니다.'},
   {s:'i7', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 송신 전력을, 1와트를 기준으로 한 dBW로 나타냈습니다. 10 곱하기 상용로그 P입니다.'},
   {s:'i7', at:'.cmp', a:[['play']], t:'겹치면 곡선과 계단이 그대로 포개집니다. 10 곱하기 로그 2가 약 3이라서, 전력이 두 배가 될 때마다 3 dB씩 오르기 때문입니다.'},
   {s:'i7', at:'.book .key', t:'로그의 성질, 로그 M N은 로그 M 더하기 로그 N. 곱셈이 덧셈으로 바뀝니다. 그래서 증폭과 손실이 곱해지는 무선에서는 dB로 바꿔 더하고 빼기만 하면 됩니다.'},
@@ -2087,14 +2118,14 @@ window.NARR = [
   {s:'i7', at:'.radio .ex', a:[['open']], t:'무선 예제입니다. 100와트에서 케이블 손실 3 dB를 빼고 안테나 이득 6 dB를 더하면 플러스 3 dB, 200와트로 보낸 것과 같습니다. S미터 한 칸은 6 dB이므로, 한 칸 올리려면 출력을 네 배로 늘려야 합니다.'},
 
   /* ---------- 고등 4 · 삼각함수 ---------- */
-  {s:'i8', at:'.cmp', a:[['side','T']], t:'대수 과목의 삼각함수 그래프입니다. 먼저 학교 그래프, 3 사인 2x. 진폭은 3, 주기는 2파이 나누기 2, 곧 파이입니다.'},
+  {s:'i8', at:'.cmp', a:[['side','T']], t:'대수 과목의 삼각함수 그래프입니다. 먼저 교과서 그래프, 3 사인 2x. 진폭은 3, 주기는 2파이 나누기 2, 곧 파이입니다.'},
   {s:'i8', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 꼭대기 전압이 100볼트인 7 메가헤르츠 교류 전압입니다.'},
   {s:'i8', at:'.cmp', a:[['play']], t:'겹쳐 보면 물결이 정확히 포개집니다. 진폭은 꼭대기 전압, b는 2파이 f, 주기 2파이 나누기 b는 1 나누기 f입니다. 7 메가헤르츠의 한 주기는 약 143 나노초입니다.'},
   {s:'i8', at:'.book .stage', a:[['click','#pG']], t:'사인 그래프는 원 위를 도는 점의 높이를 시간에 따라 옆으로 펼친 것입니다. 한 바퀴는 2파이 라디안이고, 1초에 f 바퀴 돌면 1초에 2파이 f 라디안을 돕니다. 이것이 각주파수 오메가, 2파이 f입니다.'},
   {s:'i8', at:'.radio .ex', a:[['click','#pG'],['open']], t:'무선 예제로 14 메가헤르츠를 계산하면, 주기는 약 71 나노초, 파장은 300 나누기 14로 약 21.4미터입니다. 반파장 다이폴은 약 10.7미터이고, 실제로는 5퍼센트쯤 짧게 자릅니다.'},
 
   /* ---------- 고등 5 · 미분 ---------- */
-  {s:'i9', at:'.cmp', a:[['side','T']], t:'미적분 Ⅱ의 삼각함수의 미분입니다. 먼저 학교 그래프. 사인 x와 그 도함수 코사인 x입니다. 사인 곡선 각 점의 접선 기울기를 이어 그리면 코사인이 됩니다.'},
+  {s:'i9', at:'.cmp', a:[['side','T']], t:'미적분 Ⅱ의 삼각함수의 미분입니다. 먼저 교과서 그래프. 사인 x와 그 도함수 코사인 x입니다. 사인 곡선 각 점의 접선 기울기를 이어 그리면 코사인이 됩니다.'},
   {s:'i9', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 콘덴서에 걸린 전압과 흐르는 전류입니다.'},
   {s:'i9', at:'.cmp', a:[['play']], t:'겹쳐 보면 두 쌍의 물결이 그대로 포개집니다. 콘덴서의 전류는 전압이 변하는 빠르기, 곧 전압의 미분에 비례합니다. 그래서 전류가 꼭대기에 90도 먼저 닿습니다.'},
   {s:'i9', at:'.book .stage', a:[['click','#pH']], t:'왜 사인의 미분이 코사인일까요? 원 위를 도는 점의 속도는 언제나 반지름에 수직이고, 반지름을 90도 돌린 방향의 세로 성분이 바로 코사인입니다. 고등 1의 90도 회전이 여기서 다시 쓰입니다.'},
@@ -2109,7 +2140,7 @@ window.NARR = [
   {s:'i10', at:'.radio .ex', a:[['open']], t:'무선 예제입니다. 50 옴 더미로드에 100와트를 넣으면 실효 전압은 약 70.7볼트, 꼭대기 전압은 100볼트, 오실로스코프로 보는 위아래 폭은 200볼트입니다.'},
 
   /* ---------- 고등 7 · 내적과 유효전력 ---------- */
-  {s:'i11', at:'.cmp', a:[['side','T']], t:'기하 과목의 벡터 내적입니다. 먼저 학교 그래프. 두 벡터 a와 b, 그리고 b를 a 방향으로 비춘 그림자입니다. 내적은 a의 길이 곱하기 그림자의 길이, 곧 a의 크기 곱하기 b의 크기 곱하기 코사인 세타입니다.'},
+  {s:'i11', at:'.cmp', a:[['side','T']], t:'기하 과목의 벡터 내적입니다. 먼저 교과서 그래프. 두 벡터 a와 b, 그리고 b를 a 방향으로 비춘 그림자입니다. 내적은 a의 길이 곱하기 그림자의 길이, 곧 a의 크기 곱하기 b의 크기 곱하기 코사인 세타입니다.'},
   {s:'i11', at:'.cmp', a:[['hl','R']], t:'이번엔 무선 그래프입니다. 30 플러스 제이 40 옴 안테나에 걸린 전압과 흐르는 전류입니다. 코일 쪽이라 전류가 전압보다 약 53도 늦습니다.'},
   {s:'i11', at:'.cmp', a:[['play']], t:'사이각이 같으니 두 그림이 그대로 포개집니다. 전류의 그림자, 전류 곱하기 코사인 파이가 실제로 일을 하는 부분이고, 여기에 전압을 곱한 것이 유효전력입니다.'},
   {s:'i11', at:'.book .stage', t:'내적이 0이면 그림자의 길이가 0, 곧 두 벡터가 수직입니다. 고등 1의 기울기 곱 마이너스 1은 내적이 0이라는 조건의 특별한 경우입니다.'},
@@ -2239,26 +2270,31 @@ window.NARR = [
     };
     anims[id] = requestAnimationFrame(stepF);
   }
-  let actTimer = 0;
+  let pending = [];
   function runActs(it){
-    clearTimeout(actTimer);
+    pending.forEach(clearTimeout); pending = [];
     const secEl = it.sec === 'hero' ? null : document.getElementById(it.sec);
     const cmp = secEl && secEl.querySelector('.cmp');
     const C = cmp && cmp._cmp;
     let delay = 0;
     it.acts.forEach(a => {
       const run = () => {
-        if (a[0] === 'side' && C){ C.set(0); C.hl(a[1]); }
+        if (a[0] === 'side' && C){ C.set(0); C.clear(); C.hl(a[1]); }
         else if (a[0] === 'hl' && C){ C.set(0); C.hl(a[1]); }
         else if (a[0] === 'play' && C){ C.play(C.D0); }
-        else if (a[0] === 'reset' && C){ C.set(0); C.hl(null); }
+        else if (a[0] === 'reset' && C){ C.set(0); C.clear(); C.hl(null); }
+        else if (a[0] === 'mark' && C){ C.mark(a[1], a[2], a[3], a[4], a[5]); }
+        else if (a[0] === 'clear' && C){ C.clear(); }
+        else if (a[0] === 'pair' && C){ C.pair(a[1]); }
         else if (a[0] === 'range') animRange(a[1], a[2], a[3]);
         else if (a[0] === 'click'){ const b = document.querySelector(a[1]); if (b) b.click(); }
         else if (a[0] === 'open'){ const d = it.el.matches('details') ? it.el : it.el.querySelector('details'); if (d) d.open = true; }
       };
       /* 슬라이더를 연달아 옮기는 조작은 앞의 것이 끝난 뒤에 */
-      if (delay){ setTimeout(run, delay); } else run();
+      if (a[0] === 'wait') return;
+      if (delay){ pending.push(setTimeout(run, delay)); } else run();
       if (a[0] === 'range') delay += (reduce ? 0 : (a[3] || 1500)) + 100;
+      if (a[0] === 'wait') delay += a[1];
     });
   }
   function secLabel(sec){
@@ -2398,6 +2434,96 @@ window.NARR = [
   $('.nb-close').addEventListener('click', close);
   rateSel.addEventListener('change', () => { if (playing) go(); });
   window.addEventListener('pagehide', () => { try { S.cancel(); } catch(e){} });
+})();
+</script>
+<script>
+/* ---------- 좁은 화면에서 긴 수식 맞추기 ----------
+   1) 넘치면 줄을 나눈 형태로 다시 그립니다(\qquad·⟹ 앞에서 줄바꿈 → 그래도 넘치면 = 앞에서 줄바꿈)
+   2) 그래도 넘치면 글자를 조금 줄이고(최소 80%), 마지막으로 가로 스크롤 */
+(function(){
+  function topSplit(tex, re){
+    /* 중괄호 밖에서만 나눕니다 */
+    const out = []; let depth = 0, last = 0, m; const rx = new RegExp(re.source, 'g');
+    const depthAt = []; for (let i = 0, d = 0; i < tex.length; i++){ if (tex[i] === '{' && tex[i-1] !== '\\') d++; else if (tex[i] === '}' && tex[i-1] !== '\\') d--; depthAt[i] = d; }
+    const lr = []; /* \left ... \right 안도 피함 */
+    let lvl = 0; const inLR = []; for (let i = 0; i < tex.length; i++){ if (tex.startsWith('\\left', i)) lvl++; if (tex.startsWith('\\right', i)) lvl--; inLR[i] = lvl; }
+    while ((m = rx.exec(tex))){ if (depthAt[m.index] === 0 && !inLR[m.index]) { out.push(tex.slice(last, m.index)); last = m.index + m[0].length; out.push(m[0]); } }
+    out.push(tex.slice(last));
+    return out;
+  }
+  function lines1(tex){
+    /* \qquad·\quad 묶음은 줄로, ⟹ 는 다음 줄 앞으로 */
+    const parts = topSplit(tex, /,?\s*\\qquad\s*(?:\\Longrightarrow\s*\\qquad)?|\\quad(?![a-z])|\\;\s*\\Longrightarrow\s*\\;|\\;\s*\\xrightarrow\{[^{}]*\}\s*\\;/);
+    const lines = []; let cur = '';
+    for (let i = 0; i < parts.length; i++){
+      if (i % 2 === 0) cur += parts[i];
+      else { lines.push(cur); const sep = parts[i]; cur = /Longrightarrow/.test(sep) ? '\\Longrightarrow\\; ' : (/xrightarrow/.test(sep) ? sep.replace(/^\\;\s*/, '') : ''); }
+    }
+    lines.push(cur);
+    return lines.map(x => x.trim().replace(/,$/, '')).filter(Boolean);
+  }
+  const gather = L => '\\begin{gathered}' + L.join(' \\\\[4pt] ') + '\\end{gathered}';
+  function eqSplit(line){
+    /* 긴 줄만 = 앞에서 줄바꿈 */
+    if (line.replace(/\\[a-zA-Z]+|[{}\s]/g, '').length < 14) return line;
+    const parts = topSplit(line, /=/);
+    if (parts.length < 3) return line;
+    const L = ['&' + parts[0]];
+    for (let i = 2; i < parts.length; i += 2) L.push('&= ' + parts[i]);
+    if (parts.length > 3){ L.shift(); L[0] = parts[0] + L[0]; }
+    return '\\begin{aligned}' + L.join(' \\\\ ') + '\\end{aligned}';
+  }
+  function level1(tex){ const L = lines1(tex); return L.length > 1 ? gather(L) : null; }
+  function level2(tex){ const L = lines1(tex).map(eqSplit); const t = L.length > 1 ? gather(L) : L[0]; return t === tex ? null : t; }
+  const tooWide = c => { const s = c.querySelector('svg'); return s && s.getBoundingClientRect().width > c.clientWidth + 1; };
+  async function render(holder, tex){
+    MathJax.typesetClear([holder]);
+    holder.textContent = '\\[' + tex + '\\]';
+    await MathJax.typesetPromise([holder]);
+    return holder.querySelector('mjx-container');
+  }
+  let busy = false;
+  async function fit(){
+    if (busy || !window.MathJax || !MathJax.typesetPromise) return; busy = true;
+    try {
+      const doc = MathJax.startup.document;
+      for (const c of [...document.querySelectorAll('mjx-container[display="true"]')]){
+        if (!c.offsetWidth) continue;   /* 접힌 풀이 안은 펼칠 때 */
+        let holder = c.closest('.mfit');
+        if (!holder){
+          const item = doc.getMathItemsWithin(c)[0]; if (!item) continue;
+          holder = document.createElement('span'); holder.className = 'mfit'; holder.dataset.tex = item.math;
+          c.replaceWith(holder); holder.appendChild(c);
+        }
+        const tex = holder.dataset.tex;
+        let cont = holder.querySelector('mjx-container');
+        /* 넓은 화면으로 돌아오면 원래 모양부터 다시 */
+        if (holder.dataset.lv && holder.dataset.lv !== '0'){ cont = await render(holder, tex); holder.dataset.lv = '0'; }
+        cont.style.fontSize = ''; cont.style.textAlign = '';
+        if (!tooWide(cont)) continue;
+        const l1 = level1(tex), l2 = level2(tex);
+        for (const [lv, t] of [['1', l1], ['2', l2]]){
+          if (!t) continue;
+          cont = await render(holder, t); holder.dataset.lv = lv;
+          if (!tooWide(cont)) break;
+        }
+        if (tooWide(cont)){
+          const s = cont.querySelector('svg'), r = cont.clientWidth / s.getBoundingClientRect().width;
+          cont.style.fontSize = Math.max(80, Math.floor(r * 100)) + '%';
+          if (tooWide(cont)) cont.style.textAlign = 'left';
+        }
+      }
+    } finally { busy = false; }
+  }
+  window.__mathFit = fit;
+  let lastW = 0, tm = 0;
+  function onResize(){ const w = document.documentElement.clientWidth; if (Math.abs(w - lastW) < 8) return; lastW = w; clearTimeout(tm); tm = setTimeout(fit, 250); }
+  const start = () => MathJax.startup.promise.then(() => { lastW = document.documentElement.clientWidth; return fit(); });
+  if (window.MathJax && MathJax.startup && MathJax.startup.promise) start();
+  else window.addEventListener('load', () => { if (window.MathJax && MathJax.startup) start(); });
+  window.addEventListener('resize', onResize);
+  /* 풀이를 펼치면 그 안의 수식도 맞춤 */
+  document.addEventListener('toggle', e => { if (e.target.open) setTimeout(fit, 50); }, true);
 })();
 </script>
 </body>
