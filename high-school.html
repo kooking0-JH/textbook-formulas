@@ -2440,13 +2440,15 @@ window.NARR = [
   const secEl = $('.nb-sec'), posEl = $('.nb-pos'), playBtn = $('.nb-play'), rateSel = $('.nb-rsel'), msgEl = $('.nb-msg');
 
   /* ---------- 읽기 ---------- */
-  let i = 0, k = 0, gen = 0, playing = false, onlySec = null, active = null;
+  let i = 0, k = 0, gen = 0, playing = false, onlySec = null, active = null, curUtter = null;
+  /* 예약된 그림 조작과 슬라이더 애니메이션을 모두 멈춥니다 (일시정지·닫기·문단 이동 때) */
+  function stopActs(){ pending.forEach(clearTimeout); pending = []; Object.keys(anims).forEach(id => cancelAnimationFrame(anims[id])); }
   function setActive(el, it){
     if (active) active.classList.remove('narr-on');
     active = el;
+    stopActs();
     if (!el) return;
     el.classList.add('narr-on');
-    pending.forEach(clearTimeout); pending = [];
     if (it){ const d = reduce ? 0 : 450; it._baseAt = performance.now() + d; pending.push(setTimeout(() => runActs(it), d)); }
     const r = el.getBoundingClientRect();
     if (emb()){
@@ -2479,6 +2481,7 @@ window.NARR = [
     }
     it.acts.forEach(a => { if (a[0] === 'at' && a[1] === k && k > 0){ const w = Math.max(0, (it._baseAt || 0) - performance.now()) + 20; pending.push(setTimeout(() => runActs(it, a[2]), w)); } });
     const u = new SpeechSynthesisUtterance(it.parts[k]);
+    curUtter = u;   /* 크롬 계열에서 읽는 도중 객체가 치워져 onend가 사라지는 일을 막습니다 */
     u.lang = 'ko-KR';
     if (voice) u.voice = voice;
     u.rate = +rateSel.value;
@@ -2502,7 +2505,7 @@ window.NARR = [
     setActive(items[i].el, items[i]);
     go();
   }
-  function pause(){ playing = false; gen++; try { S.cancel(); } catch(e){} updateBar(); }
+  function pause(){ playing = false; gen++; stopActs(); try { S.cancel(); } catch(e){} updateBar(); }
   function finish(){ playing = false; gen++; updateBar(); setActive(null); }
   function close(){ pause(); setActive(null); document.querySelectorAll('.cmp').forEach(c => { if (c._cmp && c._cmp.hl) c._cmp.hl(null); }); bar.hidden = true; document.body.classList.remove('narr-open'); showMsg(''); }
   function jump(d){
